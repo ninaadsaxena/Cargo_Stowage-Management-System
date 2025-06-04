@@ -1,4 +1,4 @@
-# Cargo Command ISS Optimizer
+# Cargo Stowage Management System
 
 ## Overview
 This repository contains the frontend and backend for the Cargo Command ISS Optimizer application. The application helps manage and optimize cargo operations in a space station like the International Space Station (ISS).
