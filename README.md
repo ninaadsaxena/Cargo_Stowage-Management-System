@@ -21,13 +21,13 @@ This repository contains the frontend and backend for the Cargo Command ISS Opti
 2. Navigate to the directory where you want to clone the repository.
 3. Run the following command to clone the repository:
    ```sh
-   git clone https://github.com/ninaadsaxena/cargo-command-iss-optimiser.git
+   git clone https://github.com/ninaadsaxena/Cargo_Stowage-Management-System.git
    ```
 
 ### Backend Setup
 1. Navigate to the `backend` directory:
    ```sh
-   cd cargo-command-iss-optimiser/backend
+   cd Cargo_Stowage-Management-System/backend
    ```
 
 2. Create a virtual environment:
@@ -64,7 +64,7 @@ This repository contains the frontend and backend for the Cargo Command ISS Opti
 1. Open a new terminal or command prompt.
 2. Navigate to the `frontend` directory:
    ```sh
-   cd cargo-command-iss-optimiser/frontend
+   cd Cargo_Stowage-Management-System/frontend
    ```
 
 3. Install the required dependencies:
@@ -91,7 +91,7 @@ You can also use Docker to run the application.
 
 1. Navigate to the root directory of the project:
    ```sh
-   cd cargo-command-iss-optimiser
+   cd Cargo_Stowage-Management-System
    ```
 
 2. Build the Docker images for both frontend and backend:
