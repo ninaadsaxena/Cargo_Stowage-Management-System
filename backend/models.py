@@ -19,6 +19,7 @@ class Container(BaseModel):
     width: float
     depth: float
     height: float
+    spaceUtilization: float
 
 class Log(BaseModel):
     timestamp: str
