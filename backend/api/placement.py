@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from typing import List
+from typing import List, Optional
 from schemas import PlacementRequest
 from models import Item, Container
 from crud import create_item, create_container, get_container_by_id
@@ -35,11 +35,34 @@ async def placement_recommendation(request: PlacementRequest):
     return {"success": True, "placements": placements, "rearrangements": rearrangements}
 
 def find_optimal_container(item: Item, containers: List[Container]) -> Optional[Container]:
-    available_containers = [c for c in containers if c.zone == item.preferredZone or c.spaceUtilization < 80]
-    available_containers.sort(key=lambda c: c.spaceUtilization)
-    for container in available_containers:
-        if item.width <= container.width and item.depth <= container.depth and item.height <= container.height:
-            return container
+    # First, filter for containers in the preferred zone
+    preferred_zone_containers = [
+        c for c in containers
+        if c.zone == item.preferredZone and
+           c.spaceUtilization < 80 and
+           item.width <= c.width and
+           item.depth <= c.depth and
+           item.height <= c.height
+    ]
+
+    if preferred_zone_containers:
+        preferred_zone_containers.sort(key=lambda c: c.spaceUtilization)
+        return preferred_zone_containers[0]
+
+    # If no container is found in the preferred zone, search in other zones
+    other_containers = [
+        c for c in containers
+        if c.zone != item.preferredZone and
+           c.spaceUtilization < 80 and
+           item.width <= c.width and
+           item.depth <= c.depth and
+           item.height <= c.height
+    ]
+
+    if other_containers:
+        other_containers.sort(key=lambda c: c.spaceUtilization)
+        return other_containers[0]
+
     return None
 
 def find_optimal_position(item: Item, container: Container) -> dict:
